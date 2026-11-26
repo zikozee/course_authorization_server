@@ -5,3 +5,16 @@
 
 openid profile
 openid%20profile
+
+## classes to debug
+
+### request
+ - OAuth2AuthorizationCodeRequestAuthenticationConverter
+ - OAuth2AuthorizationCodeRequestAuthenticationToken
+ - OAuth2AuthorizationCodeRequestAuthenticationProvider
+
+
+### token
+ - OAuth2AuthorizationCodeAuthenticationConverter
+ - OAuth2AuthorizationCodeAuthenticationToken
+ - OAuth2AuthorizationCodAuthenticationProvider
