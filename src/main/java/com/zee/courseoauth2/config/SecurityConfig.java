@@ -122,7 +122,23 @@ public class SecurityConfig {
                 .build();
 
 
-        return new InMemoryRegisteredClientRepository(oidcClient);
+        RegisteredClient oidcClientPkce = RegisteredClient.withId(UUID.randomUUID().toString())
+                .clientId("oidc-client2")
+                .clientSecret("{noop}secret2")
+                .clientAuthenticationMethod(ClientAuthenticationMethod.NONE)
+                .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
+                .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
+                .redirectUri("https://spring.io")
+                .postLogoutRedirectUri("http://127.0.0.1:8080/")
+                .scope(OidcScopes.OPENID)
+                .scope(OidcScopes.PROFILE)
+                .clientSettings(ClientSettings.builder()
+                        .requireProofKey(true)
+                        .build())
+                .build();
+
+
+        return new InMemoryRegisteredClientRepository(oidcClient, oidcClientPkce);
     }
 
 
