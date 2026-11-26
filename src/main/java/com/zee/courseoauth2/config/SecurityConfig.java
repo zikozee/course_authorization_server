@@ -27,6 +27,7 @@ import org.springframework.security.oauth2.server.authorization.client.Registere
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClientRepository;
 import org.springframework.security.oauth2.server.authorization.settings.AuthorizationServerSettings;
 import org.springframework.security.oauth2.server.authorization.settings.ClientSettings;
+import org.springframework.security.oauth2.server.authorization.settings.TokenSettings;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
@@ -119,13 +120,16 @@ public class SecurityConfig {
                         .requireProofKey(false)
                         .requireAuthorizationConsent(true)
                         .build())
+                .tokenSettings(TokenSettings.builder()
+                        .reuseRefreshTokens(false)
+                        .build())
                 .build();
 
 
         RegisteredClient oidcClientPkce = RegisteredClient.withId(UUID.randomUUID().toString())
                 .clientId("oidc-client2")
                 .clientSecret("{noop}secret2")
-                .clientAuthenticationMethod(ClientAuthenticationMethod.NONE)
+                .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
                 .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
                 .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
                 .redirectUri("https://spring.io")
@@ -134,6 +138,9 @@ public class SecurityConfig {
                 .scope(OidcScopes.PROFILE)
                 .clientSettings(ClientSettings.builder()
                         .requireProofKey(true)
+                        .build())
+                .tokenSettings(TokenSettings.builder()
+                        .reuseRefreshTokens(false)
                         .build())
                 .build();
 
