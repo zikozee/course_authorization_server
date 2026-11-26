@@ -37,3 +37,11 @@ openid%20profile
 - OAuth2RefreshTokenAuthenticationConverter
 - OAuth2RefreshTokenAuthenticationToken
 - OAuth2RefreshTokenAuthenticationProvider
+
+
+## CLIENT CREDENTIALS
+
+## classes to debug
+- OAuth2ClientCredentialsAuthenticationConverter
+- OAuth2ClientCredentialsAuthenticationToken
+- OAuth2ClientCredentialsAuthenticationProvider
