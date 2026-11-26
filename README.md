@@ -30,3 +30,10 @@ openid%20profile
 - ClientAuthenticationMethod.CLIENT_SECRET_BASIC
   - you should get refresh token
   - requires Basic Authentication 
+
+## REFRESH TOKEN
+
+## classes to debug
+- OAuth2RefreshTokenAuthenticationConverter
+- OAuth2RefreshTokenAuthenticationToken
+- OAuth2RefreshTokenAuthenticationProvider
