@@ -89,16 +89,16 @@ public class SecurityConfig {
         return http.build();
     }
 
-    @Bean
-    UserDetailsService userDetailsService() {
-        UserDetails userDetails = User.withDefaultPasswordEncoder()
-                .username("user")
-                .password("password")
-                .authorities("coder")
-                .build();
-
-        return new InMemoryUserDetailsManager(userDetails);
-    }
+//    @Bean
+//    UserDetailsService userDetailsService() {
+//        UserDetails userDetails = User.withDefaultPasswordEncoder()
+//                .username("user")
+//                .password("password")
+//                .authorities("coder")
+//                .build();
+//
+//        return new InMemoryUserDetailsManager(userDetails);
+//    }
 
 
 //    @Bean
