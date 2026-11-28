@@ -89,78 +89,78 @@ public class SecurityConfig {
         return http.build();
     }
 
-    @Bean
-    UserDetailsService userDetailsService() {
-        UserDetails userDetails = User.withDefaultPasswordEncoder()
-                .username("user")
-                .password("password")
-                .authorities("coder")
-                .build();
-
-        return new InMemoryUserDetailsManager(userDetails);
-    }
-
-
-    @Bean
-    RegisteredClientRepository registeredClientRepository() {
-
-//        key -> Authorization, value: Basic base64(clientid:clientsecret)
-
-        RegisteredClient oidcClient = RegisteredClient.withId(UUID.randomUUID().toString())
-                .clientId("oidc-client")
-                .clientSecret("{noop}secret")
-                .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
-                .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
-                .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
-                .redirectUri("https://spring.io")
-                .postLogoutRedirectUri("http://127.0.0.1:8080/")
-                .scope(OidcScopes.OPENID)
-                .scope(OidcScopes.PROFILE)
-                .clientSettings(ClientSettings.builder()
-                        .requireProofKey(false)
-                        .requireAuthorizationConsent(true)
-                        .build())
-                .tokenSettings(TokenSettings.builder()
-                        .reuseRefreshTokens(false)
-                        .build())
-                .build();
+//    @Bean
+//    UserDetailsService userDetailsService() {
+//        UserDetails userDetails = User.withDefaultPasswordEncoder()
+//                .username("user")
+//                .password("password")
+//                .authorities("coder")
+//                .build();
+//
+//        return new InMemoryUserDetailsManager(userDetails);
+//    }
 
 
-        RegisteredClient oidcClientPkce = RegisteredClient.withId(UUID.randomUUID().toString())
-                .clientId("oidc-client2")
-                .clientSecret("{noop}secret2")
-                .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
-                .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
-                .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
-                .redirectUri("https://spring.io")
-                .postLogoutRedirectUri("http://127.0.0.1:8080/")
-                .scope(OidcScopes.OPENID)
-                .scope(OidcScopes.PROFILE)
-                .clientSettings(ClientSettings.builder()
-                        .requireProofKey(true)
-                        .build())
-                .tokenSettings(TokenSettings.builder()
-                        .reuseRefreshTokens(false)
-                        .build())
-                .build();
-
-
-        RegisteredClient clientCredentials = RegisteredClient.withId(UUID.randomUUID().toString())
-                .clientId("oidc-client3")
-                .clientSecret("{noop}secret3")
-                .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
-                .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
-                .redirectUri("https://spring.io")
-                .postLogoutRedirectUri("http://127.0.0.1:8080/")
-                .scope(OidcScopes.OPENID)
-                .scope(OidcScopes.PROFILE)
-                .clientSettings(ClientSettings.builder()
-                        .requireProofKey(true)
-                        .build())
-                .build();
-
-        return new InMemoryRegisteredClientRepository(oidcClient, oidcClientPkce, clientCredentials);
-    }
+//    @Bean
+//    RegisteredClientRepository registeredClientRepository() {
+//
+////        key -> Authorization, value: Basic base64(clientid:clientsecret)
+//
+//        RegisteredClient oidcClient = RegisteredClient.withId(UUID.randomUUID().toString())
+//                .clientId("oidc-client")
+//                .clientSecret("{noop}secret")
+//                .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
+//                .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
+//                .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
+//                .redirectUri("https://spring.io")
+//                .postLogoutRedirectUri("http://127.0.0.1:8080/")
+//                .scope(OidcScopes.OPENID)
+//                .scope(OidcScopes.PROFILE)
+//                .clientSettings(ClientSettings.builder()
+//                        .requireProofKey(false)
+//                        .requireAuthorizationConsent(true)
+//                        .build())
+//                .tokenSettings(TokenSettings.builder()
+//                        .reuseRefreshTokens(false)
+//                        .build())
+//                .build();
+//
+//
+//        RegisteredClient oidcClientPkce = RegisteredClient.withId(UUID.randomUUID().toString())
+//                .clientId("oidc-client2")
+//                .clientSecret("{noop}secret2")
+//                .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
+//                .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
+//                .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
+//                .redirectUri("https://spring.io")
+//                .postLogoutRedirectUri("http://127.0.0.1:8080/")
+//                .scope(OidcScopes.OPENID)
+//                .scope(OidcScopes.PROFILE)
+//                .clientSettings(ClientSettings.builder()
+//                        .requireProofKey(true)
+//                        .build())
+//                .tokenSettings(TokenSettings.builder()
+//                        .reuseRefreshTokens(false)
+//                        .build())
+//                .build();
+//
+//
+//        RegisteredClient clientCredentials = RegisteredClient.withId(UUID.randomUUID().toString())
+//                .clientId("oidc-client3")
+//                .clientSecret("{noop}secret3")
+//                .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
+//                .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
+//                .redirectUri("https://spring.io")
+//                .postLogoutRedirectUri("http://127.0.0.1:8080/")
+//                .scope(OidcScopes.OPENID)
+//                .scope(OidcScopes.PROFILE)
+//                .clientSettings(ClientSettings.builder()
+//                        .requireProofKey(true)
+//                        .build())
+//                .build();
+//
+//        return new InMemoryRegisteredClientRepository(oidcClient, oidcClientPkce, clientCredentials);
+//    }
 
 
     @Bean

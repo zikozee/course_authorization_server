@@ -1,0 +1,25 @@
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:19
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: auth_course
+      PGDATA: /data/postgres
+    volumes:
+      - /Users/zikozee/docker_db/course_auth:/data/postgres
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    shm_size: '1g'
+
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+
+
+volumes:
+  postgres:
